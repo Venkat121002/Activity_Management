@@ -208,6 +208,8 @@ tbody tr td {
 .popup-menu {
     display: none;
     position: absolute;
+    top: 100%; /* directly below the task id */
+    left: 0;   /* aligned to the left of the task id */
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -215,10 +217,12 @@ tbody tr td {
     z-index: 1000;
     min-width: 120px;
 }
-    
+
 .popup-menu.active {
     display: block;
 }
+
+
 
 .popup-menu a {
     display: block;
