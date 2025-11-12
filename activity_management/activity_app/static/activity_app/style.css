@@ -9,7 +9,7 @@ body{
     left: 0;
     height: 100vh;
     width: 250px;
-    background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+    background-color: #303f56;
     padding-top: 20px;
     z-index: 1000;
     box-shadow: 2px 0 10px rgba(0,0,0,0.1);
@@ -51,6 +51,211 @@ body{
     font-weight: bold;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     margin-bottom: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    /* margin: auto; */
+    margin-left: 260px;
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 30px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #333;
+    font-size: 28px;
+}
+
+.add-btn {
+    background-color: #303f56;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.add-btn:hover {
+    background-color: #3a567a;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+thead {
+    background-color: #303f56;
+    color: white;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    font-weight: 600;
+}
+
+tbody tr {
+    cursor: pointer;
+    position: relative;
+}
+
+tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+tbody tr td {
+    position: relative;
+}
+
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-pending {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.status-in-progress {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.status-completed {
+    background-color: #28a745;
+    color: white;
+}
+
+.status-cancelled {
+    background-color: #dc3545;
+    color: white;
+}
+
+.priority-high {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.priority-medium {
+    color: #ffc107;
+    font-weight: 600;
+}
+
+.priority-low {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    clear: both;
+}
+
+.pagination a, .pagination span {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+}
+
+.pagination a:hover {
+    background-color: #17a2b8;
+    color: white;
+    border-color: #17a2b8;
+}
+
+.pagination .current {
+    background-color: #303f56;
+    color: white;
+    border-color: whitesmoke;
+}
+
+.pagination .disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Popup Menu */
+.popup-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    z-index: 1000;
+    min-width: 120px;
+}
+    
+.popup-menu.active {
+    display: block;
+}
+
+.popup-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.popup-menu a:hover {
+    background-color: #f8f9fa;
+}
+
+.popup-menu a:first-child {
+    border-radius: 5px 5px 0 0;
+}
+
+.popup-menu a:last-child {
+    border-radius: 0 0 5px 5px;
+}
+
+.popup-menu a.edit {
+    color: #17a2b8;
+}
+
+.popup-menu a.delete {
+    color: #dc3545;
+}
+
+.popup-menu a.details {
+    color: #28a745;
+}
+
+.no-tasks {
+    text-align: center;
+    padding: 40px;
+    color: #666;
 }
 
 @media (max-width: 768px){
