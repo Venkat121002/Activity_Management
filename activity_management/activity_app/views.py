@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Task, ActivityLog, Remainder
 from .forms import TasksForm, ActivityLogForm, RemainderForm
 from django.core.paginator import Paginator
+from django.contrib import messages
 
 # Create your views here.
 def task_list(request):
@@ -16,3 +17,16 @@ def task_list(request):
     }
     return render(request, 'activity_app/base.html',context)
 
+def task_create(request):
+    if request.method == 'POST':
+        form = TasksForm(request.POST)
+        if form.is_valid():
+            task = form.save()
+            messages.success(request, f'Task "{task.title}" created successfully!')
+            return redirect('task_list')
+        else:
+            messages.error(request, "Please correct the error")
+    else:
+        form = TasksForm()
+
+    return render(request, 'activity_app/task_form.html', {'form': form})

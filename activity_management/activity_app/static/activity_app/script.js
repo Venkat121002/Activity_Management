@@ -30,3 +30,17 @@ document.addEventListener('click', function(event) {
     }
 });
 
+
+// Set today's date as default for start_date
+document.getElementById('start_date').valueAsDate = new Date();
+
+// Validate due date is not before start date
+document.getElementById('due_date').addEventListener('change', function() {
+    const startDate = document.getElementById('start_date').value;
+    const dueDate = this.value;
+
+    if (startDate && dueDate && new Date(dueDate) < new Date(startDate)) {
+        alert('Due date cannot be before start date');
+        this.value = '';
+    }
+});
