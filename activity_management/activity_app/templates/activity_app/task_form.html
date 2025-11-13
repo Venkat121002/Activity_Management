@@ -79,9 +79,10 @@
                 {{ form.created_by }}
             </div>
 
-            <div class="form-actions">
-                
-                <button type="submit" class="btn-submit">Create Task</button>
+            <div class="form-actions">  
+                <button type="submit" class="btn-submit">
+                        {% if form.instance.id %}Update Task {% else %}Create{% endif %}
+                </button>
                 <a href="{% url 'task_list' %}" class="btn-cancel">Cancel</a>
             </div>
         </form>

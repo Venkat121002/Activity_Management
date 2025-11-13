@@ -30,3 +30,19 @@ def task_create(request):
         form = TasksForm()
 
     return render(request, 'activity_app/task_form.html', {'form': form})
+
+def edit_task(request,id):
+    task = get_object_or_404(Task,id=id)
+    if request.method == 'POST':
+        form = TasksForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('task_list')
+    else:
+        form = TasksForm(instance=task)
+    return render(request,'activity_app/task_form.html',{'form':form})
+
+def delete_task(request,id):
+    task = get_object_or_404(Task,id=id)
+    task.delete()
+    return redirect('task_list')
