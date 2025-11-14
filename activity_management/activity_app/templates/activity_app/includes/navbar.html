@@ -1,28 +1,29 @@
 <div>
     <div class="sidebar">
-    <div class="sidebar-brand">
-        <i class="fas fa-bars"></i> Menu
+        <div class="sidebar-brand">
+            <i class="fas fa-bars"></i> Menu
+        </div>
+        <nav class="navbar">
+            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'task_list' %}active{% endif %}" href="{% url 'task_list' %}">
+                <i class="fas fa-list"></i>
+                <span>Task List</span>
+            </a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'task_create' %}active{% endif %}" href="{% url 'task_create' %}">
+                <i class="fas fa-plus-circle"></i>
+                <span>Create Task</span>
+            </a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'activity_logs' %}active{% endif %}" href="#">
+                <i class="fas fa-clipboard-list"></i>
+                <span>Activity Logs</span>
+            </a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'reminders' %}active{% endif %}" href="#">
+                <i class="fas fa-bell"></i>
+                <span>Reminders</span>
+            </a>
+        </nav>
     </div>
-    <nav class="navbar">
-        <a class="nav-link active" href="{% url "home" %}">
-            <i class="fa-solid fa-house"></i>
-            <span>Home</span>
-        </a>
-        <a class="nav-link" href="{% url "task_list" %}">
-            <i class="fas fa-chart-line"></i>
-            <span>Task List</span>
-        </a>
-        <a class="nav-link" href="{% url "task_create" %}">
-            <i class="fas fa-chart-line"></i>
-            <span>Create Task</span>
-        </a>
-        <a class="nav-link" href="#">
-            <i class="fas fa-chart-line"></i>
-            <span>Activity Logs</span>
-        </a>
-        <a class="nav-link" href="#">
-            <i class="fas fa-bell"></i>
-            <span>Remainders</span>
-        </a>
-    </nav>
 </div>

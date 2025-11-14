@@ -19,7 +19,7 @@ def task_list(request):
         'page_obj': page_obj,
         'total_tasks': tasks.count()
     }
-    return render(request, 'activity_app/base.html',context)
+    return render(request, 'activity_app/task_list.html',context)
 
 def task_create(request):
     if request.method == 'POST':
