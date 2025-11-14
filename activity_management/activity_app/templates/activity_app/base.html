@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activity Management</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'activity_app/style.css' %}">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-aCSPk8GKu0kkiUbSSjMBDlNIQP5CKEM5Qn2ATqUFu1AN5HdyICe3CdVDYHgnN+QzocjquYJQ6UFh7ZqL2F5xNQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'activity_app/style.css' %}?v=2">
 </head>
 <body>
+    {% block content %}{% endblock  %}
     <!-- Sidebar -->
     {% include "activity_app/includes/navbar.html" %}
 
@@ -37,7 +41,7 @@
                         style="color: blue; text-decoration: underline; cursor: pointer; position: relative;">
                         {{ task.task_id }}
                         <div class="popup-menu" id="popup-{{ task.id }}">
-                            <a href="#" class="details">Details</a>
+                            <a href="{% url "task_detail" task.id %}" class="details">Details</a>
                             <a href="{% url "task_edit" task.id %}" class="edit">Edit</a>
                             <a href="{% url "task_delete" task.id %}" class="delete" onclick="return confirm('Are you sure you want to delete this task?');">Delete</a>
                         </div>

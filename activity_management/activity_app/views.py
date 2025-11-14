@@ -5,6 +5,10 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 
 # Create your views here.
+
+def home(request):
+    return render(request,'activity_app/home.html')
+
 def task_list(request):
     tasks = Task.objects.order_by('-created_at')
     paginator = Paginator(tasks,5)
@@ -22,10 +26,7 @@ def task_create(request):
         form = TasksForm(request.POST)
         if form.is_valid():
             task = form.save()
-            messages.success(request, f'Task "{task.title}" created successfully!')
             return redirect('task_list')
-        else:
-            messages.error(request, "Please correct the error")
     else:
         form = TasksForm()
 
@@ -46,3 +47,11 @@ def delete_task(request,id):
     task = get_object_or_404(Task,id=id)
     task.delete()
     return redirect('task_list')
+
+def detail_task(request,id):
+    task = get_object_or_404(Task,id=id)
+    context = {
+        'task': task
+    }
+
+    return render(request,'activity_app/task_detail.html',context)

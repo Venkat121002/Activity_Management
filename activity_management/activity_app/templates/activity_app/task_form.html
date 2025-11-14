@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Task</title>
-    <link rel="stylesheet" href="{% static 'activity_app/style.css' %}">
+    <link rel="stylesheet" href="{% static 'activity_app/style.css' %}?v=2">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
+        {% include "activity_app/includes/navbar.html" %}
     <div class="container-taskform">
         <div class="header-taskform">
             <h1>Create New Task</h1>
@@ -80,9 +81,7 @@
             </div>
 
             <div class="form-actions">  
-                <button type="submit" class="btn-submit">
-                        {% if form.instance.id %}Update Task {% else %}Create{% endif %}
-                </button>
+                <button type="submit" class="btn-submit">Save</button>
                 <a href="{% url 'task_list' %}" class="btn-cancel">Cancel</a>
             </div>
         </form>
