@@ -1,0 +1,41 @@
+{% extends "activity_app/base.html" %}
+{% block title %}create Activity{% endblock  %}
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{% endblock  %}
+
+{% block content %}
+    <div class="container-taskform">
+        <div class="header-taskform">
+            <a href="{% url 'activitylog_list' %}" class="back-btn">← Back to List</a>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_activity_id">Activity ID<span class="required">*</span></label>
+                {{ form.activity_id }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_task">Task<span class="required">*</span></label>
+                {{ form.task }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_action_type">Action Type<span class="required">*</span></label>
+                {{ form.action_type }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_note">Notes<span class="required">*</span></label>
+                {{ form.note }}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Save</button>
+                <a href="{% url "activitylog_list" %}" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock  %}

@@ -1,0 +1,72 @@
+{% extends "activity_app/base.html" %}
+{% block title %}Activity Log{% endblock  %}
+{% block content %}
+<div class="activity-container">
+    <div class="activity-header">
+        <h1>Activity Logs</h1>
+        <a href="{% url "activitylog_create" %}" class="add-btn">Add a New Activity</a>
+    </div>
+
+    {% if page_obj %}
+    <table>
+        <thead>
+            <tr>
+                <th>S.NO.</th>
+                <th>Task Name</th>
+                <th>Action Type</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for activity in page_obj %}
+            <tr>
+                <td>{{ forloop.counter|add:page_obj.start_index|add:"-1"}}</td>
+                <td class="activity-id" onclick="togglePopup(event, {{ activity.id}})"
+                style="color: blue; text-decoration: underline; cursor: pointer; position: relative;">
+                {{ activity.activity_id}}
+                <div class="popup-menu" id="popup-{{ activity.id }}">
+                    <a href="#" class="details">Details</a>
+                    <a href="#" class="edit">Edit</a>
+                    <a href="#" class="delete" onclick="return confirm('Are you sure want to delete this Activity?);')">Delete</a>
+                </div>    
+            </td>
+            <td>{{ activity.task }}</td>
+            <td>{{ activity.note|truncatechars:15|default:"No description" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+        {% comment %} for pagination  {% endcomment %}
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; First</a>
+            <a href="?page={{ page_obj.previous_page_number }}">&lsaquo; Prev</a>
+        {% else %}
+            <span class="disabled">&laquo; First</span>
+            <span class="disabled">&lsaquo; Prev</span>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <span class="current">{{ num }}</span>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next &rsaquo;</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+        {% else %}
+            <span class="disabled">Next &rsaquo;</span>
+            <span class="disabled">Last &raquo;</span>
+        {% endif %}
+    </div>
+    {% else %}
+    <div class="no-tasks">
+        <p>No tasks found. Click "Add a New Task" to create one.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock  %}

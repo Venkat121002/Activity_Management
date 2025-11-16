@@ -29,7 +29,7 @@ def task_create(request):
             return redirect('task_list')
     else:
         form = TasksForm()
-
+        print(form)
     return render(request, 'activity_app/task_form.html', {'form': form})
 
 def edit_task(request,id):
@@ -55,3 +55,27 @@ def detail_task(request,id):
     }
 
     return render(request,'activity_app/task_detail.html',context)
+
+def activitylog_list(request):
+    activities = ActivityLog.objects.order_by('-performed_at')
+    paginator = Paginator(activities,5)
+    page_number = request.GET.get('page',1)
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+        'total_activities': activities.count()
+    }
+
+    return render(request,'activity_app/activitylog_list.html',context)
+
+def activitylog_create(request):
+    if request.method == 'POST':
+        form = ActivityLogForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('activitylog_list')
+    else:
+        form = ActivityLogForm()
+    return render(request,'activity_app/activitylog_form.html',{'form':form})
+

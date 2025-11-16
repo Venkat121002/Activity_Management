@@ -58,7 +58,7 @@ class ActivityLog(models.Model):
     performed_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.task
+        return str(self.task)
     
 class Remainder(models.Model):
 

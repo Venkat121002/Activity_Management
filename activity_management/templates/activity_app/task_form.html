@@ -1,0 +1,29 @@
+{% extends "activity_app/base.html" %} {% block title %}Create Task{% endblock%} 
+{% block extra_css %}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+/>
+{% endblock %} {% block content %}
+<div class="container-taskform">
+  <div class="header-taskform">
+    <h1>Create New Task</h1>
+    <a href="{% url 'task_list' %}" class="back-btn">← Back to List</a>
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">{{ form }}</div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-submit">Save</button>
+      <a href="{% url 'task_list' %}" class="btn-cancel">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  flatpickr("#id_start_date", { dateFormat: "Y-m-d" });
+  flatpickr("#id_due_date", { dateFormat: "Y-m-d" });
+</script>
