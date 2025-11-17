@@ -10,13 +10,20 @@ def home(request):
     return render(request,'activity_app/home.html')
 
 def task_list(request):
+    search_querey = request.GET.get('search','')
+    
     tasks = Task.objects.order_by('-created_at')
+
+    if search_querey:
+        tasks = tasks.filter(title__icontains=search_querey)
+
     paginator = Paginator(tasks,5)
     page_number = request.GET.get('page',1)
     page_obj = paginator.get_page(page_number)
 
     context = {
         'page_obj': page_obj,
+        'search_query': search_querey,
         'total_tasks': tasks.count()
     }
     return render(request, 'activity_app/task_list.html',context)

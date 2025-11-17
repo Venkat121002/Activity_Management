@@ -5,10 +5,15 @@
     <div class="header">
         <h1>Activity Management</h1>
         <div class="header-buttons">
-        <a href="{% url "task_create" %}" class="add-btn">Fillter</a>
-        <a href="{% url "task_list" %}" class="add-btn">Reload</a>
+        <form method="get" class="search-container">
+            <input type="text" name="search" placeholder="Search by task title..."
+                value="{{ request.GET.search }}" class="search-input">
+            <button type="submit" class="add-btn">Filter</button>
+        </form>
+        <a href="{% url "task_list" %}" class="add-btn">Reload</a> 
         <a href="{% url "task_create" %}" class="add-btn">Add a New Task</a>
         </div>
+        
     </div>
 
     {% if page_obj %}

@@ -110,12 +110,28 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .header-buttons{
   display: flex;
-  gap: 35px;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Search bar styles */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-input {
+    padding: 10px 15px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
 }
 
 .header h1 {
@@ -126,7 +142,6 @@ body {
 .add-btn {
   background-color: #303f56;
   color: white;
-  /* padding: 12px 24px; */
   padding: 8px 16px;
   border: none;
   border-radius: 5px;
