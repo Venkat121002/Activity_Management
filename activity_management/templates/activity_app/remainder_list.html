@@ -1,10 +1,9 @@
 {% extends "activity_app/base.html" %}
-{% block title %}Activity Log{% endblock  %}
 {% block content %}
 <div class="activity-container">
     <div class="activity-header">
-        <h1>Activity Logs</h1>
-        <a href="{% url "activitylog_create" %}" class="add-btn">Add a New Activity</a>
+        <h1>Remainders</h1>
+        <a href="{% url "remainder_create" %}" class="add-btn">Add a New Activity</a>
     </div>
 
     {% if page_obj %}
@@ -12,26 +11,26 @@
         <thead>
             <tr>
                 <th>S.NO.</th>
+                <th>Remainder ID</th>
                 <th>Task Name</th>
-                <th>Action Type</th>
-                <th>Notes</th>
+                <th>Remainder Date</th>
             </tr>
         </thead>
         <tbody>
-            {% for activity in page_obj %}
+            {% for remainder in page_obj %}
             <tr>
                 <td>{{ forloop.counter|add:page_obj.start_index|add:"-1"}}</td>
-                <td class="activity-id" onclick="togglePopup(event, {{ activity.id}})"
+                <td class="activity-id" onclick="togglePopup(event, {{ remainder.id}})"
                 style="color: blue; text-decoration: underline; cursor: pointer; position: relative;">
-                {{ activity.activity_id}}
-                <div class="popup-menu" id="popup-{{ activity.id }}">
-                    <a href="{% url "activitylog_detail" activity.id %}" class="details">Details</a>
-                    <a href="{% url "activitylog_edit" activity.id %}" class="edit">Edit</a>
-                    <a href="{% url "activitylog_delete" activity.id %}" class="delete" onclick="return confirm('Are you sure want to delete this Activity?);')">Delete</a>
+                {{ remainder.remainder_id}}
+                <div class="popup-menu" id="popup-{{ remainder.id }}">
+                    <a href="{% url "remainder_detail" remainder.id %}" class="details">Details</a>
+                    <a href="{% url "remainder_edit" remainder.id %}" class="edit">Edit</a>
+                    <a href="{% url "remainder_delete" remainder.id %}" class="delete" onclick="return confirm('Are you sure want to delete this Activity?);')">Delete</a>
                 </div>    
             </td>
-            <td>{{ activity.task }}</td>
-            <td>{{ activity.note|truncatechars:15|default:"No description" }}</td>
+            <td>{{ remainder.task }}</td>
+            <td>{{ remainder.remainder_date }}</td>
             </tr>
             {% endfor %}
         </tbody>

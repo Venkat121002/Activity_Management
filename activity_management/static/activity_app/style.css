@@ -110,7 +110,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+.header-buttons{
+  display: flex;
+  gap: 35px;
 }
 
 .header h1 {
@@ -121,7 +126,8 @@ body {
 .add-btn {
   background-color: #303f56;
   color: white;
-  padding: 12px 24px;
+  /* padding: 12px 24px; */
+  padding: 8px 16px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -589,6 +595,32 @@ textarea {
 .activity-header h1{
   color: #333;
   font-size: 28px;
+}
+
+/* activity action type badge styles */
+.badge-actiontype{
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  display: inline-block;
+}
+
+.badge-comment{
+  background-color: #3498db;
+}
+
+.badge-status{
+  background-color: #2ecc71;
+}
+
+.badge-follow{
+  background-color: #e67e22;
+}
+
+.badge-remainder{
+  background-color: #e74c3c;
 }
 
 @media (max-width: 768px) {

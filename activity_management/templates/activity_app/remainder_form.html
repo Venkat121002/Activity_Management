@@ -1,13 +1,8 @@
 {% extends "activity_app/base.html" %}
-{% block title %}create Activity{% endblock  %}
-{% block extra_css %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-{% endblock  %}
-
 {% block content %}
-    <div class="container-taskform">
+<div class="container-taskform">
         <div class="header-taskform">
-            <a href="{% url 'activitylog_list' %}" class="back-btn">← Back to List</a>
+            <a href="{% url 'remainder_list' %}" class="back-btn">← Back to List</a>
         </div>
 
         <form method="post">
@@ -18,7 +13,7 @@
 
             <div class="form-actions">
                 <button type="submit" class="btn-submit">Save</button>
-                <a href="{% url "activitylog_list" %}" class="btn-cancel">Cancel</a>
+                <a href="{% url "remainder_list" %}" class="btn-cancel">Cancel</a>
             </div>
         </form>
     </div>

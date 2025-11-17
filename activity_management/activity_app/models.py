@@ -64,13 +64,13 @@ class Remainder(models.Model):
 
     remainder_id = models.CharField(max_length=20, unique=True)
     task = models.ForeignKey('Task',on_delete=models.CASCADE,related_name='reminders')
-    reminder_date = models.DateTimeField()
+    remainder_date = models.DateTimeField()
     is_sent = models.BooleanField(default=False)
     sent_at = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.task
+        return str(self.task)
     
 
 

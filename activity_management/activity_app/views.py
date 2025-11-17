@@ -79,3 +79,75 @@ def activitylog_create(request):
         form = ActivityLogForm()
     return render(request,'activity_app/activitylog_form.html',{'form':form})
 
+def activitylog_detail(request,id):
+    activity = get_object_or_404(ActivityLog,id=id)
+    context = {
+        'activity': activity
+    }
+
+    return render(request,'activity_app/activitylog_detail.html',context)
+
+def activitylog_edit(request,id):
+    activity = get_object_or_404(ActivityLog,id=id)
+    if request.method == 'POST':
+        form = ActivityLogForm(request.POST,instance=activity)
+        if form.is_valid():
+            form.save()
+            return redirect('activitylog_list')
+    else:
+        form = ActivityLogForm(instance=activity)
+
+    return render(request,'activity_app/activitylog_form.html',{'form':form})
+
+def activitylog_delete(request,id):
+    activity = get_object_or_404(ActivityLog,id=id)
+    activity.delete()
+    return redirect('activitylog_list')
+
+
+def remainder_list(request):
+    remainder = Remainder.objects.order_by('-created_at')
+    pagination = Paginator(remainder,5)
+    page_number = request.GET.get('page',1)
+    page_obj = pagination.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+        'total_remainders': remainder.count()
+    }
+
+    return render(request,'activity_app/remainder_list.html',context)
+
+def remainder_create(request):
+    if request.method == 'POST':
+        form = RemainderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('remainder_list')
+    else:
+        form = RemainderForm()
+    return render(request,'activity_app/remainder_form.html',{'form':form})
+
+def remainder_edit(request,id):
+    remainder = get_object_or_404(Remainder,id=id)
+    if request.method == 'POST':
+        form = RemainderForm(request.POST,instance=remainder)
+        if form.is_valid():
+            form.save()
+            return redirect('remainder_list')
+    else:
+        form = RemainderForm(instance=remainder)
+    return render(request,'activity_app/remainder_form.html',{'form':form})
+
+def remainder_detail(request,id):
+    remainder = get_object_or_404(Remainder,id=id)
+    context = {
+        'remainder':remainder
+    }
+
+    return render(request,'activity_app/remainder_detail.html',context)
+
+def remainder_delete(request,id):
+    remainder = get_object_or_404(Remainder,id=id)
+    remainder.delete()
+    return redirect('remainder_list')

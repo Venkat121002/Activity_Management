@@ -1,0 +1,46 @@
+{% extends "activity_app/base.html" %}
+{% block content %}
+    <div class='detail-container'>
+        <div class="detail-header">
+            <h1>Task Details</h1>
+            <div class="action-buttons">
+                <a href="{% url 'activitylog_list' %}" class="btn btn-back">← Back to List</a>
+            </div>
+        </div> 
+
+        <div class="detail-row">
+            <div class="detail-field">
+                <label>Activity ID</label>
+                <div class="value">{{ activity.activity_id }}</div>
+            </div>
+
+            <div class="detail-field">
+                <label>Task</label>
+                <div class="value">{{ activity.task }}</div>
+            </div>
+
+            <div class="detail-field">
+                <label>Action Type</label>
+                <div class="value">
+                     <span class="badge-actiontype 
+                        {% if activity.action_type == 'Comment' %} badge-comment 
+                        {% elif activity.action_type == 'Status Update' %} badge-status 
+                        {% elif activity.action_type == 'Follow up' %} badge-follow 
+                        {% elif activity.action_type == 'Reminder' %} badge-reminder 
+                        {% endif %}">
+                        {{ activity.action_type }}
+                    </span>
+                    </div>
+            </div>
+
+            <div class="detail-field">
+                <label>Notes</label>
+                <div class="value">{{ activity.note }}</div>
+            </div>
+
+            <div class="detail-field">
+                <label>Performed By</label>
+                <div class="value">{{ activity.performed_by }}</div>
+            </div>
+    </div>
+{% endblock  %}

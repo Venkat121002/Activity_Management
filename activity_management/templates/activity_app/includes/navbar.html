@@ -1,22 +1,19 @@
 <div>
     <div class="sidebar">
         <div class="sidebar-brand">
-            <i class="fas fa-bars"></i> Menu
+            <img width="35" height="35" src="https://img.icons8.com/sf-black/64/FFFFFF/menu.png" alt="menu"/> Menu
         </div>
         <nav class="navbar">
             <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">
                 <span><img width="20" height="20" src="https://img.icons8.com/ios-filled/50/FFFFFF/home.png" alt="home"/>  Home</span>
             </a>
-            <a class="nav-link {% if request.resolver_match.url_name == 'task_list' %}active{% endif %}" href="{% url 'task_list' %}">
+            <a class="nav-link {% if request.resolver_match.url_name == 'task_list'%}active{% endif %}" href="{% url 'task_list' %}">
                 <span><img width="20" height="20" src="https://img.icons8.com/ios/50/FFFFFF/checklist--v1.png" alt="checklist--v1"/>  Task List</span>
-            </a>
-            <a class="nav-link {% if request.resolver_match.url_name == 'task_create' %}active{% endif %}" href="{% url 'task_create' %}">
-                <span><img width="20" height="20" src="https://img.icons8.com/ios-filled/50/FFFFFF/task.png" alt="task"/>   Create Task</span>
             </a>
             <a class="nav-link {% if request.resolver_match.url_name == 'activitylog_list' %}active{% endif %}" href="{% url "activitylog_list" %}">
                 <span><img width="20" height="20" src="https://img.icons8.com/parakeet-line/48/FFFFFF/graph.png" alt="graph"/>  Activity Logs</span>
             </a>
-            <a class="nav-link {% if request.resolver_match.url_name == 'reminders' %}active{% endif %}" href="#">
+            <a class="nav-link {% if request.resolver_match.url_name == 'remainder_list' %}active{% endif %}" href="{% url "remainder_list" %}">
                 <span><img width="20" height="20" src="https://img.icons8.com/sf-black-filled/64/FFFFFF/alarm.png" alt="alarm"/>  Reminders</span>
             </a>
         </nav>

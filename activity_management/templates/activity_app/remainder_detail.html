@@ -1,0 +1,41 @@
+{% extends "activity_app/base.html" %}
+{% block content %}
+    <div class='detail-container'>
+        <div class="detail-header">
+            <h1>Remainder Details</h1>
+            <div class="action-buttons">
+                <a href="{% url 'remainder_list' %}" class="btn btn-back">← Back to List</a>
+            </div>
+        </div> 
+
+        <div class="detail-row">
+            <div class="detail-field">
+                <label>Remainder ID</label>
+                <div class="value">{{ remainder.remainder_id }}</div>
+            </div>
+
+            <div class="detail-field">
+                <label>Task Name</label>
+                <div class="value">{{ remainder.task }}</div>
+            </div>
+
+            <div class="detail-field">
+                <label>Remainder Date</label>
+                <div class="value">
+                        {{ remainder.remainder_date }}
+                    </div>
+            </div>
+
+            <div class="detail-field">
+                <label>Is Sent</label>
+                <div class="value">{{ remainder.is_sent }}</div>
+            </div>
+
+            <div class="detail-field">
+                <label>Sent at</label>
+                <div class="value">{{ remainder.sent_at }}</div>
+            </div>
+    </div>
+{% endblock  %}
+
+
