@@ -7,7 +7,7 @@
         <div class="header-buttons">
         <form method="get" class="search-container">
             <input type="text" name="search" placeholder="Search by task title..."
-                value="{{ request.GET.search }}" class="search-input">
+                value="{{ request.GET.search }}" class="search-input"> 
             <button type="submit" class="add-btn">Filter</button>
         </form>
         <a href="{% url "task_list" %}" class="add-btn">Reload</a> 
@@ -40,7 +40,7 @@
                     </div>
                 </td>
                 <td>{{ task.title }}</td>
-                <td>{{ task.description|truncatewords:15|default:"No description" }}</td>
+                <td>{{ task.description|truncatewords:8|default:"No description" }}</td>
             </tr>
             {% endfor %}
         </tbody>

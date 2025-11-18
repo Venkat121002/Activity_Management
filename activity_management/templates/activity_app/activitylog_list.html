@@ -1,10 +1,19 @@
 {% extends "activity_app/base.html" %}
 {% block title %}Activity Log{% endblock  %}
 {% block content %}
-<div class="activity-container">
-    <div class="activity-header">
+<div class="container">
+    <div class="header">
         <h1>Activity Logs</h1>
+        <div class="header-buttons">
+        <form method="get" class="search-container">
+            <input type="text" name="search" placeholder="Search by action type..."
+                value="{{ request.GET.search }}" class="search-input">
+            <button type="submit" class="add-btn">Filter</button>
+        </form>
+        <a href="{% url "activitylog_list" %}" class="add-btn">Reload</a> 
         <a href="{% url "activitylog_create" %}" class="add-btn">Add a New Activity</a>
+        </div>
+        
     </div>
 
     {% if page_obj %}
@@ -12,6 +21,7 @@
         <thead>
             <tr>
                 <th>S.NO.</th>
+                <th>Activity ID</th>
                 <th>Task Name</th>
                 <th>Action Type</th>
                 <th>Notes</th>
@@ -31,6 +41,7 @@
                 </div>    
             </td>
             <td>{{ activity.task }}</td>
+            <td>{{ activity.action_type }}</td>
             <td>{{ activity.note|truncatechars:15|default:"No description" }}</td>
             </tr>
             {% endfor %}

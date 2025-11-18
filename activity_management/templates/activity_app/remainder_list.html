@@ -1,10 +1,19 @@
 {% extends "activity_app/base.html" %}
 {% block title %}Remainders{% endblock  %}
 {% block content %}
-<div class="activity-container">
-    <div class="activity-header">
+<div class="container">
+    <div class="header">
         <h1>Remainders</h1>
-        <a href="{% url "remainder_create" %}" class="add-btn">Add a New Activity</a>
+        <div class="header-buttons">
+        <form method="get" class="search-container">
+            <input type="text" name="search" placeholder="Search by task name..."
+                value="{{ request.GET.search }}" class="search-input">
+            <button type="submit" class="add-btn">Filter</button>
+        </form>
+        <a href="{% url "remainder_list" %}" class="add-btn">Reload</a> 
+        <a href="{% url "remainder_create" %}" class="add-btn">Add a New Remainder</a>
+        </div>
+        
     </div>
 
     {% if page_obj %}
@@ -27,7 +36,7 @@
                 <div class="popup-menu" id="popup-{{ remainder.id }}">
                     <a href="{% url "remainder_detail" remainder.id %}" class="details">Details</a>
                     <a href="{% url "remainder_edit" remainder.id %}" class="edit">Edit</a>
-                    <a href="{% url "remainder_delete" remainder.id %}" class="delete" onclick="return confirm('Are you sure want to delete this Activity?);')">Delete</a>
+                    <a href="{% url "remainder_delete" remainder.id %}" class="delete" onclick="return confirm('Are you sure want to delete this Activity?');">Delete</a>
                 </div>    
             </td>
             <td>{{ remainder.task }}</td>

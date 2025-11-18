@@ -638,8 +638,3 @@ textarea {
   background-color: #e74c3c;
 }
 
-@media (max-width: 768px) {
-  .sidebar {
-    width: 200px;
-  }
-}

@@ -2,7 +2,6 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Task, ActivityLog, Remainder
 from .forms import TasksForm, ActivityLogForm, RemainderForm
 from django.core.paginator import Paginator
-from django.contrib import messages
 
 # Create your views here.
 
@@ -32,7 +31,7 @@ def task_create(request):
     if request.method == 'POST':
         form = TasksForm(request.POST)
         if form.is_valid():
-            task = form.save()
+            form.save()
             return redirect('task_list')
     else:
         form = TasksForm()
@@ -64,13 +63,20 @@ def detail_task(request,id):
     return render(request,'activity_app/task_detail.html',context)
 
 def activitylog_list(request):
+    search_query = request.GET.get('search','')
+
     activities = ActivityLog.objects.order_by('-performed_at')
+
+    if search_query:
+        activities = activities.filter(action_type__icontains=search_query)
+
     paginator = Paginator(activities,5)
     page_number = request.GET.get('page',1)
     page_obj = paginator.get_page(page_number)
 
     context = {
         'page_obj': page_obj,
+        'search_query': search_query,
         'total_activities': activities.count()
     }
 
@@ -113,14 +119,21 @@ def activitylog_delete(request,id):
 
 
 def remainder_list(request):
+    search_query = request.GET.get('search','')
+
     remainder = Remainder.objects.order_by('-created_at')
+
+    if search_query:
+        remainder = remainder.filter(task__title__icontains=search_query)
+
     pagination = Paginator(remainder,5)
     page_number = request.GET.get('page',1)
     page_obj = pagination.get_page(page_number)
 
     context = {
         'page_obj': page_obj,
-        'total_remainders': remainder.count()
+        'search_query': search_query,
+        'total_remainders': remainder.count(),
     }
 
     return render(request,'activity_app/remainder_list.html',context)
