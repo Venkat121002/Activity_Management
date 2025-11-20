@@ -2,12 +2,14 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Task, ActivityLog, Remainder
 from .forms import TasksForm, ActivityLogForm, RemainderForm
 from django.core.paginator import Paginator
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required(login_url='login-page')
 def home(request):
     return render(request,'activity_app/home.html')
 
+@login_required(login_url='login-page')
 def task_list(request):
     search_querey = request.GET.get('search','')
     

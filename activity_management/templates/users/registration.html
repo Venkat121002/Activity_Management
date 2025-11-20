@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'activity_app/style.css' %}">
+</head>
+<body class="login-body">
+
+<div class="form-container">
+    <h2>Create Account</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn-submit">Register</button>
+        <p>Already have an account? <a href={% url "login-page" %}>Login</a></p>
+    </form>
+</div>
+</body>
+</html>
