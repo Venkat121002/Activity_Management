@@ -345,8 +345,8 @@ input[type="text"],
 input[type="date"],
 select,
 textarea {
-  width: 100%;
-  padding: 12px;
+  width: 90%;
+  padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 14px;
@@ -641,7 +641,7 @@ textarea {
 /* login&Registration styles */
 .form-container {
     width: 400px;
-    margin: 0;
+    margin: 0 auto;
     background: #fff;
     padding: 25px;
     border-radius: 8px;
@@ -654,7 +654,7 @@ textarea {
 }
 
 .form-control {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 5px;
@@ -662,8 +662,7 @@ textarea {
 }
 
 .btn-submit {
-    width: 100%;
-    padding: 10px;
+    width: 50%;
     background-color: #303f56;
     color: #fff;
     border: none;
@@ -684,7 +683,11 @@ textarea {
     align-items: center;
 }
 
-
+.login-form p {
+    color: red;
+    text-align: left;
+    margin-bottom: 15px;
+}
 
 /* Sidebar footer styles */
 .sidebar-footer {

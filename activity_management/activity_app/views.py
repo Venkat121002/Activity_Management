@@ -64,6 +64,7 @@ def detail_task(request,id):
 
     return render(request,'activity_app/task_detail.html',context)
 
+@login_required(login_url='login-page')
 def activitylog_list(request):
     search_query = request.GET.get('search','')
 

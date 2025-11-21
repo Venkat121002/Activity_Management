@@ -62,7 +62,7 @@ def login_view(request):
             else:
                 message = "Invalid Credientaials"
                 template_name = 'users/login.html'
-                context = {'form':form,'message':'Login Successfull','error':message}
+                context = {'form':form,'error':message}
                 return render(request,template_name,context)
         
         else:

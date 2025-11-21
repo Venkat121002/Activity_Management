@@ -8,14 +8,15 @@
 <body class="login-body">
     <div class="form-container">
         <h2>Login</h2>
-        <p>{{error}}</p>
-        <p>{{message}}</p>
-        <form method="post">
+        <p style="color:red;">{{error}}</p>
+        <form method="post"class="login-form">
             {% csrf_token %}
             {{ form.as_p }}
 
+            <div style="text-align:center;">
             <button type="submit" class="btn-submit">Login</button>
-            <p>Don't have an account? <a href="{% url 'register-page' %}">Register</a></p>
+            </div>
+            <p style="color:black;">Don't have an account? <a href="{% url 'register-page' %}">Register</a></p>
         </form>
     </div>
 </body>
