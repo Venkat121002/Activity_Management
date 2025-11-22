@@ -6,7 +6,7 @@ from api_app.serializer import TaskSerializer,ActivitylogSerializer,RemainderSer
 # Create your views here.
 
 class TaskApiView(APIView):
-    def get(self,*args, **kwargs):
+    def get(self,request,*args, **kwargs):
         
         try:
             tasks = Task.objects.all()
@@ -34,7 +34,38 @@ class TaskApiView(APIView):
         except Exception as e:
             return Response(data={'error':str(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
-            
+        
+    def put(self,request,id,*args, **kwargs):
+        try:
+            task = Task.objects.get(id=id)
+            serailizer = TaskSerializer(instance=task,data=request.data,partial=True)
+
+            if serailizer.is_valid():
+                serailizer.save()
+                message = {
+                    'status': 'success',
+                    'status_code': status.HTTP_200_OK
+                }
+                return Response(data=message,status=status.HTTP_200_OK)
+            else:
+                return Response(data=serailizer.errors,status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response(data={'error': str(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+    def delete(self,request,id,*args, **kwargs):
+        try:
+            task = Task.objects.get(id=id)
+            task.delete()
+            message = {
+                'status': 'success',
+                'status_code': status.HTTP_200_OK
+            }
+            return Response(data=message,status=status.HTTP_200_OK)
+    
+        except Exception as e:
+            return Response(data={'error':str(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+
 class ActivitylogApiView(APIView):
     def get(self,*args, **kwargs):
         try:
@@ -58,6 +89,35 @@ class ActivitylogApiView(APIView):
                 return Response(data=serializer.errors,status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response(data={'error':str(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+    def put(self,request,id,*args, **kwargs):
+        try:
+            activity = ActivityLog.objects.get(id=id)
+            serializer = ActivitylogSerializer(instance=activity,data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                message = {
+                    'status': 'success',
+                    'status_code': status.HTTP_200_OK
+                }
+                return Response(data=message,status=status.HTTP_200_OK)
+            else:
+                return Response(data=serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response(data={'error': str(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+    def delete(self,request,id,*args, **kwargs):
+        try:
+            task = ActivityLog.objects.get(id=id)
+            task.delete()
+            message = {
+                'status': 'success',
+                'status_code': status.HTTP_200_OK
+            }
+            return Response(data=message,status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response(data={'error':str(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
         
 
 class RemainderApiView(APIView):
@@ -85,4 +145,32 @@ class RemainderApiView(APIView):
                 return Response(data=serializer.errors,status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response(data={'error':str(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
         
+    def put(self,request,id,*args, **kwargs):
+        try:
+            remainder = Remainder.objects.get(id=id)
+            serializer = RemainderSerializer(instance=remainder,data=request.data,partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                message = {
+                    'status': 'success',
+                    'status_code': status.HTTP_200_OK
+                }
+                return Response(data=message,status=status.HTTP_200_OK)
+            else:
+                return Response(data=serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response(data={'error':str(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+    def delete(self,request,id,*args, **kwargs):
+        try:
+            remainder = Remainder.objects.get(id=id)
+            remainder.delete()
+            message = {
+                'status': 'success',
+                'status_code': status.HTTP_200_OK
+            }
+            return Response(data=message,status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response(data={'error':str(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
